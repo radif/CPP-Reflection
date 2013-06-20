@@ -12,28 +12,24 @@
 
 int main(int argc, const char * argv[])
 {
-
-    
     
     //templated instantiation, no casting required
     {
-        std::cout <<"templated instantiation, no casting required"<<std::endl<<std::endl;
+        std::cout <<std::endl<<"templated instantiation, no casting required"<<std::endl<<std::endl;
         auto base(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Base *>("Base"));
         auto derived1(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived1 *>("Derived1"));
         auto derived2(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived2 *>("Derived2"));
-
-            
+        
+        
         std::cout << base->stringFromClass() << std::endl;
         std::cout << derived1->stringFromClass() << std::endl;
         std::cout << derived2->stringFromClass() << std::endl;
     }
     
-    //instantiation of the pinters casted to the base class
     
-    //templated instantiation, no casting required
+    //instantiation of the pointers casted to the base class, heavily relying on virtual functions
     {
-        
-        std::cout <<"templated instantiation, no casting required"<<std::endl<<std::endl;
+        std::cout <<std::endl<<"instantiation of the pointers casted to the base class, heavily relying on virtual functions"<<std::endl<<std::endl;
         
         auto base(mcb::PlatformSupport::Base::create("Base"));
         auto derived1(mcb::PlatformSupport::Base::create("Derived1"));

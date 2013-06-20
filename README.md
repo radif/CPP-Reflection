@@ -6,34 +6,32 @@ Reflection is not supported by current c++ standard, This examples demonstrates 
 Here is an example on how to use the reflection:
 
 	//templated instantiation, no casting required
-   {
-       std::cout <<"templated instantiation, no casting required"<<std::endl<<std::endl;
-       auto base(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Base *>("Base"));
-       auto derived1(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived1 *>("Derived1"));
-       auto derived2(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived2 *>("Derived2"));
+	{
+	    std::cout <<std::endl<<"templated instantiation, no casting required"<<std::endl<<std::endl;
+	    auto base(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Base *>("Base"));
+	    auto derived1(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived1 *>("Derived1"));
+	    auto derived2(mcb::PlatformSupport::Base::create<mcb::PlatformSupport::Derived2 *>("Derived2"));
+    
+    
+	    std::cout << base->stringFromClass() << std::endl;
+	    std::cout << derived1->stringFromClass() << std::endl;
+	    std::cout << derived2->stringFromClass() << std::endl;
+	}
 
-           
-       std::cout << base->stringFromClass() << std::endl;
-       std::cout << derived1->stringFromClass() << std::endl;
-       std::cout << derived2->stringFromClass() << std::endl;
-   }
-   
-   //instantiation of the pinters casted to the base class
-   
-   //templated instantiation, no casting required
-   {
-       
-       std::cout <<"templated instantiation, no casting required"<<std::endl<<std::endl;
-       
-       auto base(mcb::PlatformSupport::Base::create("Base"));
-       auto derived1(mcb::PlatformSupport::Base::create("Derived1"));
-       auto derived2(mcb::PlatformSupport::Base::create("Derived2"));
-       
-       
-       std::cout << base->stringFromClass() << std::endl;
-       std::cout << derived1->stringFromClass() << std::endl;
-       std::cout << derived2->stringFromClass() << std::endl;
-   }
+
+	//instantiation of the pointers casted to the base class, heavily relying on virtual functions
+	{
+	    std::cout <<std::endl<<"instantiation of the pointers casted to the base class, heavily relying on virtual functions"<<std::endl<<std::endl;
+    
+	    auto base(mcb::PlatformSupport::Base::create("Base"));
+	    auto derived1(mcb::PlatformSupport::Base::create("Derived1"));
+	    auto derived2(mcb::PlatformSupport::Base::create("Derived2"));
+    
+    
+	    std::cout << base->stringFromClass() << std::endl;
+	    std::cout << derived1->stringFromClass() << std::endl;
+	    std::cout << derived2->stringFromClass() << std::endl;
+	}
 
 To add your class into the reflection map, you must inherit from Base, however with little code modification this requirement can go away. I personally prefer having a base class to rely on certain behavior even if I don't have the class information/declaration included.
 
